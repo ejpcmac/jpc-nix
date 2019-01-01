@@ -5,5 +5,5 @@ let
 in
 
 rec {
-  night-light-slider = callPackage ./pkgs/night-light-slider {};
+  night-light-slider = callPackage ./pkgs/night-light-slider.nix {};
 }
