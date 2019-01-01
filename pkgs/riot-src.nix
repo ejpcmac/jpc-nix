@@ -29,6 +29,7 @@ stdenv.mkDerivation rec {
     HOME="$PWD"
 
     pushd riot-web
+    cp config.sample.json config.json
     npm install
     npm shrinkwrap --dev
     popd
