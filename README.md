@@ -1,8 +1,7 @@
 # nix-jpc
 
-Personal Nix channel containing some ugly hacks that will eventually become
-something better. In the mean time, **please use with caution, and fork before
-using.**
+Personal Nix channel. **Please use with caution, nothing here is guarenteed to
+keep working.**
 
 ## Usage
 
@@ -21,6 +20,6 @@ let
 in
 
 {
-  home.packages = [ jpc.riot-desktop ];
+  home.packages = [ jpc.night-light-slider ];
 }
 ```
