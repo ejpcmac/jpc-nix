@@ -20,6 +20,6 @@ let
 in
 
 {
-  home.packages = [ jpc.night-light-slider ];
+  home.packages = [ jpc.syncoid ];
 }
 ```
