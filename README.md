@@ -1,14 +1,13 @@
-# nix-jpc
+# nixpkgs-jpc
 
-Personal Nix channel. **Please use with caution, nothing here is guarenteed to
-keep working.**
+Personal Nix packages collection.
 
 ## Usage
 
 First, add the channel:
 
-    $ nix-channel --add https://github.com/ejpcmac/jpc-nix/archive/master.tar.gz jpc-nix
-    $ nix-channel --update jpc-nix
+    $ nix-channel --add https://github.com/ejpcmac/nixpkgs-jpc/archive/master.tar.gz nixpkgs-jpc
+    $ nix-channel --update nixpkgs-jpc
 
 You can then install packages from this channel, for instance in your `home.nix`
 
@@ -16,7 +15,7 @@ You can then install packages from this channel, for instance in your `home.nix`
 { config, pkgs, ... }:
 
 let
-  jpc = import <jpc-nix> { inherit pkgs; };
+  jpc = import <nixpkgs-jpc> { inherit pkgs; };
 in
 
 {
