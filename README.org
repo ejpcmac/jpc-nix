@@ -3,25 +3,50 @@
 Personal Nix packages collection.
 
 ** Usage
+*** As a channel
 
-   First, add the channel:
+    First, add the channel:
 
-   #+BEGIN_EXAMPLE
-   $ nix-channel --add https://github.com/ejpcmac/nixpkgs-jpc/archive/master.tar.gz nixpkgs-jpc
-   $ nix-channel --update nixpkgs-jpc
-   #+END_EXAMPLE
+    #+BEGIN_EXAMPLE
+    $ nix-channel --add https://github.com/ejpcmac/nixpkgs-jpc/archive/master.tar.gz nixpkgs-jpc
+    $ nix-channel --update nixpkgs-jpc
+    #+END_EXAMPLE
 
-   You can then install packages from this channel, for instance in your
-   =home.nix=
+    You can then install packages from this channel, for instance in your
+    =configuration.nix=
 
-   #+BEGIN_SRC nix
-   { config, pkgs, ... }:
+    #+BEGIN_SRC nix
+    { config, pkgs, ... }:
 
-   let
-     jpc = import <nixpkgs-jpc> { inherit pkgs; };
-   in
+    let
+      jpc = import <nixpkgs-jpc> { inherit pkgs; };
+    in
 
-   {
-     home.packages = [ jpc.syncoid ];
-   }
-   #+END_SRC
+    {
+      environment.systemPackages = [ jpc.syncoid ];
+    }
+    #+END_SRC
+
+*** In a =shell.nix=
+
+    To get a portable =shell.nix= you may prefer to use =builtins.fetchTarball=
+    instead:
+
+    #+BEGIN_SRC nix
+    { pkgs ? import <nixpkgs> {} }:
+
+    with pkgs;
+
+    let
+      jpc = import (builtins.fetchTarball
+        https://github.com/ejpcmac/nixpkgs-jpc/archive/master.tar.gz) {};
+    in
+
+    mkShell {
+      buildInputs = [
+        cargo
+        jpc.cargo-crev
+        jpc.cargo-watch
+      ];
+    }
+    #+END_SRC
