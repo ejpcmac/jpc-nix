@@ -5,7 +5,7 @@ let
 in
 
 rec {
-  night-light-slider = callPackage ./pkgs/night-light-slider.nix {};
+  night-light-slider = callPackage ./pkgs/night-light-slider {};
   scribus-with-icon = callPackage ./pkgs/scribus-with-icon {};
-  syncoid = callPackage ./pkgs/syncoid.nix {};
+  syncoid = callPackage ./pkgs/syncoid {};
 }
