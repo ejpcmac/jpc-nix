@@ -13,7 +13,7 @@ Personal Nix packages collection.
     #+END_EXAMPLE
 
     You can then install packages from this channel, for instance in your
-    =configuration.nix=
+    =configuration.nix=:
 
     #+BEGIN_SRC nix
     { config, pkgs, ... }:
