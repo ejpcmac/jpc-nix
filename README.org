@@ -1,6 +1,6 @@
-* nixpkgs-jpc
+#+TITLE: nixpkgs-jpc
 
-  Personal Nix packages collection.
+Personal Nix packages collection.
 
 ** Usage
 
