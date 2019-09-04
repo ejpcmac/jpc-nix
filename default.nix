@@ -7,6 +7,7 @@ in
 rec {
   cargo-binutils = callPackage ./pkgs/cargo-binutils {};
   cargo-crev = callPackage ./pkgs/cargo-crev {};
+  cargo-testify = callPackage ./pkgs/cargo-testify {};
   cargo-watch = callPackage ./pkgs/cargo-watch {};
   night-light-slider = callPackage ./pkgs/night-light-slider {};
   scribus-with-icon = callPackage ./pkgs/scribus-with-icon {};
