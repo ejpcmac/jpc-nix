@@ -1,5 +1,5 @@
-{ stdenv, lib, fetchFromGitHub, perl, coreutils, busybox, sudo, openssh, pv,
-  gzip, pigz, zstd, xz, lzop, lz4, mbuffer }:
+{ stdenv, lib, fetchFromGitHub, makeWrapper, perl, perlPackages, coreutils,
+  busybox, sudo, openssh, pv, gzip, pigz, zstd, xz, lzop, lz4, mbuffer }:
 
 let
   path = lib.makeBinPath [
@@ -16,18 +16,24 @@ let
     lz4
     mbuffer
   ];
+
+  perlPath = with perlPackages; makePerlPath [
+    CaptureTiny
+  ];
 in
 
 stdenv.mkDerivation rec {
   name = "syncoid-${version}";
-  version = "2019-04-20";
+  version = "2.0.2";
 
   src = fetchFromGitHub {
     owner = "jimsalterjrs";
     repo = "sanoid";
-    rev = "dd47dd536886dbd77c66ca77e26b2ac4b9a7f759";
-    sha256 = "0y6mka5x0bz6rnaib5nmr9f7mjp28lwbl3i9d4vc2gksryqd7wxs";
+    rev = "v${version}";
+    sha256 = "09cgchhpprr8yyx9kabwz3y7lz9kzn6wfdsqq3zam7c7yck672xa";
   };
+
+  nativeBuildInputs = [ makeWrapper ];
 
   installPhase = ''
     mkdir -p $out/bin
@@ -37,5 +43,6 @@ stdenv.mkDerivation rec {
   fixupPhase = ''
     substituteInPlace $out/bin/syncoid --replace "/usr/bin/perl" "${perl}/bin/perl"
     substituteInPlace $out/bin/syncoid --replace "/bin:/usr/bin:/sbin" "${path}"
+    wrapProgram $out/bin/syncoid --set PERL5LIB "${perlPath}"
   '';
 }
