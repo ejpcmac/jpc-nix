@@ -24,13 +24,13 @@ in
 
 stdenv.mkDerivation rec {
   name = "syncoid-${version}";
-  version = "2.0.2";
+  version = "2020-01-18";
 
   src = fetchFromGitHub {
     owner = "jimsalterjrs";
     repo = "sanoid";
-    rev = "v${version}";
-    sha256 = "09cgchhpprr8yyx9kabwz3y7lz9kzn6wfdsqq3zam7c7yck672xa";
+    rev = "bb30496d19affedace5180e282f37b39c151ac84";
+    sha256 = "0lbjgcczsd8l6rvq99x2dbf7wm8q661aqsxdwbcfx8c05afyrg18";
   };
 
   nativeBuildInputs = [ makeWrapper ];
